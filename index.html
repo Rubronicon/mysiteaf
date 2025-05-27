@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Ластівка</title>
+    <style>
+            /* СТИЛІ ЯК І РАНІШЕ */
+            /* Хедер */
+            #modal .modal-content form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    #modal .modal-content input,
+    #modal .modal-content textarea {
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+        resize: vertical;
+    }
+
+    #modal .modal-content textarea {
+        min-height: 100px;
+    }
+
+    #modal .modal-content button {
+        padding: 10px;
+        background-color: #007bff;
+        border: none;
+        color: white;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    #modal .modal-content button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Темна тема */
+    body.dark #modal .modal-content input,
+    body.dark #modal .modal-content textarea {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #555;
+    }
+
+    body.dark #modal .modal-content button {
+        background-color: #3399ff;
+    }
+
+    body.dark header {
+        background-color: #222;
+        color: #f0f0f0;
+    }
+    body.dark header span {
+        color: #aaa;
+    }
+
+    /* Картка птаха */
+    body.dark .card {
+        background-color: #2a2a2a;
+        color: #f0f0f0;
+    }
+
+    /* Контент */
+    body.dark .content h2,
+    body.dark .content h3,
+    body.dark .content p,
+    body.dark .content li {
+        color: #f0f0f0;
+    }
+
+    /* Модальне вікно */
+    body.dark #modal .modal-content {
+        background-color: #222;
+        color: #fff;
+    }
+
+    /* Instagram іконка, щоб не була занадто темна */
+    body.dark .icon {
+        filter: brightness(1.2);
+    }
+
+    /* Footer */
+    body.dark footer {
+        background-color: #111;
+        color: #aaa;
+        border-color: #444;
+    }
+
+            #theme-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    #themeToggle {
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background-color: #444;
+        color: white;
+    }
+
+    body.light #themeToggle {
+        background-color: #eee;
+        color: #000;
+    }
+
+    #modal {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    #modal .modal-content {
+        background-color: white;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 400px;
+    }
+
+    .comment {
+        background: #fff;
+        padding: 10px;
+        margin: 10px 40px;
+        border-radius: 8px;
+    }
+
+    body.dark .comment {
+        background-color: #333;
+        color: #f0f0f0;
+        border: 1px solid #555;
+    }
+
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #efe6dd;
+            color: #1a1a1a;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.dark {
+            background-color: #1a1a1a;
+            color: #f1f1f1;
+        }
+
+        body.light {
+            background-color: #efe6dd;
+            color: #1a1a1a;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        header span {
+            color: gray;
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            padding: 60px 40px;
+            gap: 40px;
+        }
+
+        .card {
+            background-color: #f1e6dd;
+            border-radius: 12px;
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .card .photo {
+            width: 150px;
+            height: 150px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background-image: url('https://admiralclub.com.ua/wp-content/uploads/lastochka.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .icon-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-link:hover {
+            transform: scale(1.1);
+        }
+
+        .icon {
+            width: 32px;
+            height: 32px;
+            filter: brightness(0) saturate(100%);
+        }
+
+        .card h2 {
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .content {
+            max-width: 600px;
+        }
+
+        .content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .content ol, .content ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            padding: 20px 40px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+            border-top: 1px solid #ccc;
+        }
+
+        /* Стилі для модального вікна */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #modal .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .comment {
+            background: #fff;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ластівка</h1>
+        <span>/ Досьє мандрівниці</span>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="photo"></div>
+            <h2>Ластівка</h2>
+            <p>Птах-мандрівник</p>
+            <a href="https://www.instagram.com/sintxf1/" target="_blank" class="icon-link">
+                <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" class="icon">
+            </a>
+        </div>
+
+        <div class="content">
+            <h2>Привіт</h2>
+            <p>Мене звати Ластівка. Я люблю подорожувати, відкривати нові місця та спостерігати за світом з висоти неба.</p>
+
+            <h3>Улюблені справи</h3>
+            <ol>
+                <li>Літати</li>
+                <li>Будувати гнізда</li>
+                <li>Пісні на світанку</li>
+            </ol>
+
+            <h3>Де б хотіла побувати</h3>
+            <ul>
+                <li>Гори Тибету</li>
+                <li>Амазонія</li>
+                <li>Скандинавія</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Модальне вікно -->
+    <div id="modal">
+    <div class="modal-content">
+        <h2>Зворотний зв'язок</h2>
+        <form id="feedback-form">
+            <input type="text" name="name" placeholder="Ім'я" required>
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="tel" name="phone" placeholder="Телефон" required>
+            <textarea name="message" placeholder="Повідомлення" required></textarea>
+            <button type="submit">Надіслати</button>
+        </form>
+    </div>
+    <!-- Кнопка перемикача теми -->
+    <div id="theme-container">
+        <button id="themeToggle">Змінити тему</button>
+    </div>
+
+    <!-- Модальне вікно -->
+    <div id="modal">
+        <div class="modal-content">
+            <h2>Привіт!</h2>
+            <p>Дякуємо, що завітали на сторінку Ластівки 🐦</p>
+        </div>
+    </div>
+
+    <!-- Інформація про браузер -->
+    <div id="browser-info"></div>
+
+    <!-- Підключення JS -->
+    <script src="script.js"></script>
+</body>
+</html>
